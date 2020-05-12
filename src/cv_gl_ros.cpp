@@ -90,6 +90,7 @@ public:
             return test_img;
         }
     }
+    //TODO
     void publishGLImage(cv::Mat gl_img)
     {
         if(!gl_img.empty())
@@ -205,7 +206,7 @@ int main(int argc, char* argv[])
    while(ros::ok())
    { 
    	img = obj.getImage();
-   	cv::ogl::Texture2D backgroundTex(img);   
+   	cv::ogl::Texture2D backgroundTex(img,true);   
    	cv::setOpenGlDrawCallback("OpenGL_ROS", on_opengl, &backgroundTex);
    	cv::updateWindow("OpenGL_ROS");
         ros::spinOnce();   
@@ -213,8 +214,6 @@ int main(int argc, char* argv[])
 
         if (key == 27) break; // if escape pressed then break
 	
-	backgroundTex.release();
-	//r.sleep();
 
    }
    cv::setOpenGlDrawCallback("OpenGL_ROS", 0, 0);
