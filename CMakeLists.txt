@@ -18,8 +18,6 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(OpenCV REQUIRED)
 find_package(OpenGL REQUIRED)
 
-
-
 catkin_package()
 
 #Removing ROS default opencv include path 
@@ -32,7 +30,6 @@ set (catkin_LIBRARIES /opt/ros/melodic/lib/libcv_bridge.so;/opt/ros/melodic/lib/
 include_directories(
   ${catkin_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS} 
 )
-
 
 add_executable(opengl_ros src/cv_gl_ros.cpp)
 target_link_libraries(opengl_ros PRIVATE ${catkin_LIBRARIES} ${OpenCV_LIBS} ${OPENGL_LIBRARIES})
