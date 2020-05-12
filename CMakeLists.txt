@@ -34,8 +34,6 @@ include_directories(
 )
 
 
-#message(STATUS " From Traj viz package    include path: ${catkin_LIBRARIES}")
-
 add_executable(opengl_ros src/cv_gl_ros.cpp)
 target_link_libraries(opengl_ros PRIVATE ${catkin_LIBRARIES} ${OpenCV_LIBS} ${OPENGL_LIBRARIES})
 
