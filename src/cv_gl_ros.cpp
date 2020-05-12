@@ -143,9 +143,9 @@ void on_opengl(void* param) {
         glBegin( GL_QUADS );
         for (int j = 0; j < 4; ++j) {
             glVertex3d(
-                        0.6 * coords[i][j][0],
-                    0.6 * coords[i][j][1],
-                    0.6 * coords[i][j][2]
+                        0.3 * coords[i][j][0],
+                    0.3 * coords[i][j][1],
+                    0.3 * coords[i][j][2]
                     );
         }
         glEnd();
@@ -179,6 +179,7 @@ int main(int argc, char* argv[])
     ImageROS obj;
     cv::Mat img;     
 
+    ros::Rate r(10); // 10 hz
 
 
     while(img.empty())
@@ -200,7 +201,6 @@ int main(int argc, char* argv[])
     cv::createTrackbar( "X-rotation", "OpenGL_ROS", &rotx, 360, on_trackbar);
     cv::createTrackbar( "Y-rotation", "OpenGL_ROS", &roty, 360, on_trackbar);
 
-
     
    while(ros::ok())
    { 
@@ -209,8 +209,13 @@ int main(int argc, char* argv[])
    	cv::setOpenGlDrawCallback("OpenGL_ROS", on_opengl, &backgroundTex);
    	cv::updateWindow("OpenGL_ROS");
         ros::spinOnce();   
-	int key = cv::waitKey(30);	
+        int key = cv::waitKey(30);	
+
         if (key == 27) break; // if escape pressed then break
+	
+	backgroundTex.release();
+	//r.sleep();
+
    }
    cv::setOpenGlDrawCallback("OpenGL_ROS", 0, 0);
    cv::destroyAllWindows();
