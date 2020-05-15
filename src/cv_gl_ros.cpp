@@ -213,6 +213,7 @@ int main(int argc, char* argv[])
         int key = cv::waitKey(30);	
 
         if (key == 27) break; // if escape pressed then break
+	backgroundTex.release(); //Releasing the background texture to avoid memory leak
 	
 
    }
